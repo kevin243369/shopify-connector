@@ -15,48 +15,47 @@ app.config["DEBUG"] = True
 @app.route('/orders', methods=["GET", "POST"])
 @cross_origin()
 def orders():
-    try:
-        api_key = request.args.get("api_key")
-        secret = request.args.get("secret")
-        password = request.args.get("password")
-        shop = request.args.get("shop")
-        start_date = request.args.get("start_date")
-        end_date = request.args.get("end_date")
+
+    api_key = request.args.get("api_key")
+    secret = request.args.get("secret")
+    password = request.args.get("password")
+    shop = request.args.get("shop")
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")
+
+    # api_key = "593b197053b69e47eddf888f385aa031"
+    # secret = "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"
+    # password = "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"
+    # shop = "natura-malasia"
+    # start_date = "2020-01-01"
+    # end_date = "2020-03-01"
+
+    # api_key = "962b7f897d3284cb320d4d194d27dccf"
+    # secret = "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"
+    # password = "a94cdaad05ee6bb41320f99735c04336"
+    # shop = "harryandchewie"
+    # start_date = "2018-01-01"
+    # end_date = "2020-12-01"
+
+    data = {
+        "apikey": api_key,
+        "appsecret" : secret,
+        "apppassword" : password,
+        "shopname": shop,
+        "startdate" : start_date,
+        "enddate" : end_date
+    }
     
-        # api_key = "593b197053b69e47eddf888f385aa031"
-        # secret = "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"
-        # password = "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"
-        # shop = "natura-malasia"
-        # start_date = "2020-01-01"
-        # end_date = "2020-03-01"
+    shopify = shopifydata(data)
+    shopify_orders = shopify.get_all_orders()
+    return jsonify({"result": shopify_orders.to_dict(orient='records')})
 
-        # api_key = "962b7f897d3284cb320d4d194d27dccf"
-        # secret = "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"
-        # password = "a94cdaad05ee6bb41320f99735c04336"
-        # shop = "harryandchewie"
-        # start_date = "2018-01-01"
-        # end_date = "2020-12-01"
-
-        data = {
-            "apikey": api_key,
-            "appsecret" : secret,
-            "apppassword" : password,
-            "shopname": shop,
-            "startdate" : start_date,
-            "enddate" : end_date
-        }
-        
-        shopify = shopifydata(data)
-        shopify_orders = shopify.get_all_orders()
-        response = app.response_class(
-            response=json.dumps(shopify_orders.to_dict(orient='records')),
-            status=200,
-            mimetype='application/json'
-        )
-        print(type(response))
-        return response
-    except Exception as e:
-        return jsonify(error=str(e)), 404
+    # response = app.response_class(
+    #     response=json.dumps(shopify_orders.to_dict(orient='records')),
+    #     status=200,
+    #     mimetype='application/json'
+    # )
+    # return response
 
 @app.route('/customers', methods=["GET", "POST"])
 @cross_origin()
@@ -131,3 +130,4 @@ if __name__ == '__main__':
 
     # gcloud run deploy shopify-connector --image $DOCKER_IMG --platform managed --region $REGION --allow-unauthenticated
     # http://localhost:5000/orders?api_key=962b7f897d3284cb320d4d194d27dccf&secret=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&password=a94cdaad05ee6bb41320f99735c04336&shop=harryandchewie&start_date=2018-01-01&end_date=2020-12-01
+    # https://shopify-connector-ge7alh3neq-ew.a.run.app/orders?api_key=593b197053b69e47eddf888f385aa031&secret=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&password=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&shop=natura-malasia&start_date=2020-01-01&end_date=2020-4-01
