@@ -123,6 +123,8 @@ class shopifydata:
             print("Last ORDER ID is: " + str(last_orders_id))
             print("Total orders: " + str(self.total_orders))
 
+            return self.df
+
             # df_wanted_fields_to_dict = self.df_wanted_fields.to_dict(orient='records')
             # df_all_to_dict = self.df.to_dict(orient='records')
             # j = len(df_all_to_dict)
@@ -152,7 +154,5 @@ class shopifydata:
             #     j -= 1
             # data_orders_lineitem = pd.read_csv("shopify_orders_lineitem.csv")
             #  #
-
-            return self.df
 
             # return data_orders_lineitem
