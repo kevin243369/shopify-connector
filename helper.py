@@ -37,14 +37,14 @@ class shopifydata:
         tmp_customers = pd.DataFrame(raw)
         self.df = self.df.append(tmp_customers)
 
-        if(len(raw)==250):
-            self.since_id = raw[249]['id']
-            self.get_all_customers()
+        # if(len(raw)==250):
+        #     self.since_id = raw[249]['id']
+        #     self.get_all_customers()
 
-        elif(len(raw)<250):
-            last_customers_id = raw[len(raw)-1]['id']
-            print("Last CUSTOMER ID is: " + str(last_customers_id))
-            print("Total customers: " + str(self.total_customers))
+        # elif(len(raw)<250):
+        #     last_customers_id = raw[len(raw)-1]['id']
+        #     print("Last CUSTOMER ID is: " + str(last_customers_id))
+        #     print("Total customers: " + str(self.total_customers))
 
         return self.df
 
@@ -61,14 +61,14 @@ class shopifydata:
         tmp_products = pd.DataFrame(raw)
         self.df = self.df.append(tmp_products)
 
-        if(len(raw)==250):
-            self.since_id = raw[249]['id']
-            self.get_all_products()
+        # if(len(raw)==250):
+        #     self.since_id = raw[249]['id']
+        #     self.get_all_products()
 
-        elif(len(raw)<250):
-            last_products_id = raw[len(raw)-1]['id']
-            print("Last PRODUCT ID is: " + str(last_products_id))
-            print("Total products: " + str(self.total_products))
+        # elif(len(raw)<250):
+        #     last_products_id = raw[len(raw)-1]['id']
+        #     print("Last PRODUCT ID is: " + str(last_products_id))
+        #     print("Total products: " + str(self.total_products))
 
         return self.df
 
@@ -114,16 +114,16 @@ class shopifydata:
         # self.df_wanted_fields = self.df_wanted_fields.append(tmp_orders_wanted_fields)
         #  #
 
-        if(len(raw)==250):
-            self.since_id = raw[249]['id']
-            self.get_all_orders() 
+        # if(len(raw)==250):
+        #     self.since_id = raw[249]['id']
+        #     self.get_all_orders() 
 
-        elif(len(raw)<250):
-            last_orders_id = raw[len(raw)-1]['id']
-            print("Last ORDER ID is: " + str(last_orders_id))
-            print("Total orders: " + str(self.total_orders))
+        # elif(len(raw)<250):
+        #     last_orders_id = raw[len(raw)-1]['id']
+        #     print("Last ORDER ID is: " + str(last_orders_id))
+        #     print("Total orders: " + str(self.total_orders))
 
-            return self.df
+        return self.df
 
             # df_wanted_fields_to_dict = self.df_wanted_fields.to_dict(orient='records')
             # df_all_to_dict = self.df.to_dict(orient='records')
