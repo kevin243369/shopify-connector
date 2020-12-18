@@ -126,7 +126,7 @@ def products():
         return jsonify(error=str(e)), 404
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, host= 'localhost')
+    app.run(debug=True, port=8080, host= '0.0.0.0')
 
     # gcloud run deploy shopify-connector --image $DOCKER_IMG --platform managed --region $REGION --allow-unauthenticated
     # http://localhost:5000/orders?api_key=962b7f897d3284cb320d4d194d27dccf&secret=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&password=a94cdaad05ee6bb41320f99735c04336&shop=harryandchewie&start_date=2018-01-01&end_date=2020-12-01
