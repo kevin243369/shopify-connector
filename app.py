@@ -12,7 +12,7 @@ cors = CORS(app, resources = {r"/*": {"origins" : "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["DEBUG"] = True
 
-@app.route('/orders', methods=["POST"])
+@app.route('/orders', methods=["GET", "POST"])
 @cross_origin()
 def orders():
     try:
@@ -53,7 +53,7 @@ def orders():
     except Exception as e:
         return jsonify(error=str(e)), 404
 
-@app.route('/customers', methods=["POST"])
+@app.route('/customers', methods=["GET", "POST"])
 @cross_origin()
 def customers():
     try:
@@ -87,7 +87,7 @@ def customers():
     except Exception as e:
         return jsonify(error=str(e)), 404
 
-@app.route('/products', methods=["POST"])
+@app.route('/products', methods=["GET", "POST"])
 @cross_origin()
 def products():
     try:
