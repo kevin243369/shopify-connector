@@ -48,7 +48,7 @@ def orders():
     
     shopify = shopifydata(data)
     shopify_orders = shopify.get_all_orders()
-    return jsonify({"result": shopify_orders.to_dict(orient='records')})
+    return '{ "name":"John", "age":30, "city":"New York"}'
 
     # response = app.response_class(
     #     response=json.dumps(shopify_orders.to_dict(orient='records')),
@@ -86,8 +86,7 @@ def customers():
         
         shopify = shopifydata(data)
         shopify_customers = shopify.get_all_customers()
-        return jsonify({"result": shopify_customers.to_dict(orient='records')})
-
+        return { "name":"John", "age":30, "city":"New York"}
     except Exception as e:
         return jsonify(error=str(e)), 404
 
