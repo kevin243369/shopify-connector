@@ -48,7 +48,7 @@ def orders():
     
     shopify = shopifydata(data)
     shopify_orders = shopify.get_all_orders()
-    return '{ "name":"John", "age":30, "city":"New York"}'
+    return jsonify({"result": shopify_orders.to_dict(orient='records')})
 
     # response = app.response_class(
     #     response=json.dumps(shopify_orders.to_dict(orient='records')),
