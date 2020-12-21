@@ -72,7 +72,7 @@ class shopifydata:
     #--------------COMPILE ALL--------------#
     def compile_all_data(self):
         all_data = {
-            "orders" : self.get_all_orders(),
+            "orders" : self.get_all_products(),
             "customers" : self.get_all_customers(),
             "products" : self.get_all_products()
         }
