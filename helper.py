@@ -63,6 +63,7 @@ class shopifydata:
 
         raw = response.json()['orders']
         tmp_orders = pd.DataFrame(raw)
+
         self.df = self.df.append(tmp_orders)
         self.total_orders += len(raw)
 
@@ -71,9 +72,9 @@ class shopifydata:
     #--------------COMPILE ALL--------------#
     def compile_all_data(self):
         all_data = {
+            "orders" : self.get_all_orders(),
             "customers" : self.get_all_customers(),
-            "products" : self.get_all_products(),
-            "orders" : self.get_all_orders()
+            "products" : self.get_all_products()
         }
 
         return all_data
