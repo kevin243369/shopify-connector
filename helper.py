@@ -37,7 +37,7 @@ class shopifydata:
         tmp_customers = pd.DataFrame(raw)
         self.df = self.df.append(tmp_customers)
 
-        return self.df
+        return response.json()
 
     #--------------PRODUCTS--------------#
     def get_all_products(self):
@@ -52,7 +52,7 @@ class shopifydata:
         tmp_products = pd.DataFrame(raw)
         self.df = self.df.append(tmp_products)
 
-        return self.df
+        return response.json()
 
     #--------------ORDERS--------------#
     def get_all_orders(self):
@@ -66,4 +66,14 @@ class shopifydata:
         self.df = self.df.append(tmp_orders)
         self.total_orders += len(raw)
 
-        return self.df
+        return response.json()
+
+    #--------------COMPILE ALL--------------#
+    def compile_all_data(self):
+        all_data = {
+            "customers" : self.get_all_customers(),
+            "products" : self.get_all_products(),
+            "orders" : self.get_all_orders()
+        }
+
+        return all_data
