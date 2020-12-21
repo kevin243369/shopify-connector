@@ -127,39 +127,35 @@ def products():
 @app.route('/getData', methods=["GET", "POST"])
 @cross_origin()
 def getData():
-    try:
-        api_key = request.args.get("api_key")
-        secret = request.args.get("secret")
-        password = request.args.get("password")
-        shop = request.args.get("shop")
-        start_date = request.args.get("start_date")
-        end_date = request.args.get("end_date")
+    api_key = request.args.get("api_key")
+    secret = request.args.get("secret")
+    password = request.args.get("password")
+    shop = request.args.get("shop")
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")
+
+    # api_key = "962b7f897d3284cb320d4d194d27dccf"
+    # secret = "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"
+    # password = "a94cdaad05ee6bb41320f99735c04336"
+    # shop = "harryandchewie"
+    # start_date = "2018-01-01"
+    # end_date = "2020-12-01"
+
+    data = {
+        "apikey": api_key,
+        "appsecret" : secret,
+        "apppassword" : password,
+        "shopname": shop,
+        "startdate" : start_date,
+        "enddate" : end_date
+    }
     
-        # api_key = "962b7f897d3284cb320d4d194d27dccf"
-        # secret = "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"
-        # password = "a94cdaad05ee6bb41320f99735c04336"
-        # shop = "harryandchewie"
-        # start_date = "2018-01-01"
-        # end_date = "2020-12-01"
-
-        data = {
-            "apikey": api_key,
-            "appsecret" : secret,
-            "apppassword" : password,
-            "shopname": shop,
-            "startdate" : start_date,
-            "enddate" : end_date
-        }
-        
-        shopify = shopifydata(data)
-        shopify_all_data = shopify.compile_all_data()
-        return jsonify({"result": shopify_products_all_data})
-
-    except Exception as e:
-        return jsonify(error=str(e)), 404
+    shopify = shopifydata(data)
+    shopify_all_data = shopify.compile_all_data()
+    return jsonify({"result": shopify_all_data})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080, host= '0.0.0.0')
+    app.run(debug=True, port=5000, host= 'localhost')
 
     # gcloud run deploy shopify-connector --image $DOCKER_IMG --platform managed --region $REGION --allow-unauthenticated
     # http://localhost:5000/orders?api_key=962b7f897d3284cb320d4d194d27dccf&secret=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&password=a94cdaad05ee6bb41320f99735c04336&shop=harryandchewie&start_date=2018-01-01&end_date=2020-12-01
